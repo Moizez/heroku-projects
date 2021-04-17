@@ -43,7 +43,7 @@ public class TaskResource extends Response<Task> implements EntityResource<Task>
 		Optional<Task> task = service.findById(id);
 
 		if (task.isPresent()) {
-			BeanUtils.copyProperties(entity, task.get(), "id");
+			BeanUtils.copyProperties(entity, task.get(), "id", "description", "date");
 
 			service.save(task.get());
 			return ResponseEntity.ok(task.get());

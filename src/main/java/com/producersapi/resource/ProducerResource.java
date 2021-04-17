@@ -26,7 +26,6 @@ public class ProducerResource extends Response<Producer> implements EntityResour
 
 	@Override
 	public ResponseEntity<Producer> save(Producer entity) {
-		System.out.println(entity);
 		
 		service.save(entity);
 		return new ResponseEntity<Producer>(entity, HttpStatus.CREATED);
@@ -45,8 +44,6 @@ public class ProducerResource extends Response<Producer> implements EntityResour
 	@Override
 	public ResponseEntity<Producer> updateById(Integer id, Producer entity) {
 		Optional<Producer> producer = service.findById(id);
-
-		System.out.println(entity);
 
 		if (producer.isPresent()) {
 
