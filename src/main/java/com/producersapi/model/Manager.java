@@ -54,5 +54,8 @@ public class Manager implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "manager")
 	private List<Producer> producers;
+	
+	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Task> tasks;
 
 }
