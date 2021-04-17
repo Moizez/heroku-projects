@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,18 +12,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.producersapi.enums.ActivitiesName;
+import com.producersapi.enums.Period;
 
 import lombok.Data;
 
 @Data
 @Entity
-public class Producer implements Serializable {
-
+public class NewProducer implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -50,21 +49,26 @@ public class Producer implements Serializable {
 	private Date birthDate;
 
 	private String cpf;
-
+	
 	@ManyToOne
-	private Manager manager;
+	public Manager manager;
+	
+	private ActivitiesName activitiesName;
+	
+	private Period period;
+	
+	private String uf;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "producer_address")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Address address;
+	private String city;
+	
+	private String zipCode;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "producer_activity")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private FarmingActivity farmingActivity;
+	private String district;
 
-	@OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Product> products;
+	private String street;
+
+	private String houseNumber;
+
+	private String reference;
 
 }

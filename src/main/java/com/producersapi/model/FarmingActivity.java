@@ -3,6 +3,7 @@ package com.producersapi.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,9 +31,9 @@ public class FarmingActivity implements Serializable {
 	private Period period;
 
 	private float averageCash;
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "address")
+	@OneToMany(mappedBy = "farmingActivity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Producer> producers;
 
 }

@@ -3,12 +3,12 @@ package com.producersapi.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -39,11 +39,11 @@ public class Address implements Serializable {
 	private String reference;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "address")
+	@OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Producer> producers;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "address")
-	private Manager manager;
+	@OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Manager> manager;
 
 }

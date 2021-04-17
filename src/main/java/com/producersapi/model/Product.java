@@ -1,15 +1,17 @@
 package com.producersapi.model;
 
 import java.io.Serializable;
-import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.Data;
 
@@ -24,9 +26,10 @@ public class Product implements Serializable {
 	private Integer value;
 
 	private String label;
-	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "products")
-	private List<Producer> producers;
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "product_producer")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Producer producer;
 
 }
