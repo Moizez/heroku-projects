@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -30,6 +32,7 @@ public class Task implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	
+	@JsonIgnore
 	@ManyToOne
 	private Manager manager;
 

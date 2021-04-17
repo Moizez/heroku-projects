@@ -16,7 +16,7 @@ import com.producersapi.util.EntityResource;
 import com.producersapi.util.Response;
 
 @RestController
-@RequestMapping("api/tasks")
+@RequestMapping("/api/tasks")
 public class TaskResource extends Response<Task> implements EntityResource<Task> {
 
 	@Autowired
