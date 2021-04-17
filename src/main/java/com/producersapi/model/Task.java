@@ -25,7 +25,7 @@ public class Task implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	private String name;
+	private String description;
 	
 	private boolean status;
 	

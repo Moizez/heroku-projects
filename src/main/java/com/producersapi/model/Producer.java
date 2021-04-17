@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -64,7 +65,8 @@ public class Producer implements Serializable {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private FarmingActivity farmingActivity;
 
-	@OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+	@JoinTable(name = "producer_products")
 	private List<Product> products;
 
 }
