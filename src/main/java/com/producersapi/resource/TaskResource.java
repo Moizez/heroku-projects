@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,7 +42,9 @@ public class TaskResource extends Response<Task> implements EntityResource<Task>
 	@Override
 	public ResponseEntity<Task> updateById(Integer id, Task entity) {
 		Optional<Task> task = service.findById(id);
-
+		
+		System.out.println(entity.isStatus());
+		
 		if (task.isPresent()) {
 			BeanUtils.copyProperties(entity, task.get(), "id", "description", "date");
 
@@ -62,5 +65,10 @@ public class TaskResource extends Response<Task> implements EntityResource<Task>
 		}
 
 		return ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("/taskstoday")
+	public List<Task> findByCurrentDate() {
+		return service.findByCurrentDate();
 	}
 }

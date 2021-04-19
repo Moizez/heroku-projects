@@ -35,4 +35,8 @@ public class TaskService implements EntityService<Task>{
 	public void deleteById(Integer id) {
 		repository.deleteById(id);
 	}
+	
+	public List<Task> findByCurrentDate() {
+		return repository.findByCurrentDate();
+	}
 }

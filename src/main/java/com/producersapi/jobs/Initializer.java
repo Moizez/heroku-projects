@@ -49,7 +49,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		address.setStreet("Rua Cicero Celino");
 		address.setHouseNumber("44");
 		address.setReference("Próximo ao espetinho do Léo");
-
+		
 		if (manager == null) {
 			manager = new Manager();
 			manager.setName("Leandro Rêgo");
@@ -60,6 +60,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			manager.setEmail("leo@gmail.com");
 			manager.setPassword("123");
 			manager.setAddress(address);
+			manager.setTasks(null);
 			managerService.save(manager);
 		}
 	}
