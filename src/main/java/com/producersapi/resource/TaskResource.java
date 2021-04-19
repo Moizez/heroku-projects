@@ -67,8 +67,13 @@ public class TaskResource extends Response<Task> implements EntityResource<Task>
 		return ResponseEntity.notFound().build();
 	}
 	
-	@GetMapping("/taskstoday")
+	@GetMapping("/todaytasks")
 	public List<Task> findByCurrentDate() {
 		return service.findByCurrentDate();
+	}
+	
+	@GetMapping("/futuretasks")
+	public List<Task> findByFutureTasks() {
+		return service.findByFutureTasks();
 	}
 }

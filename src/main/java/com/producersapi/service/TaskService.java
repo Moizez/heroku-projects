@@ -39,4 +39,8 @@ public class TaskService implements EntityService<Task>{
 	public List<Task> findByCurrentDate() {
 		return repository.findByCurrentDate();
 	}
+
+	public List<Task> findByFutureTasks() {
+		return repository.findByFutureTasks();
+	}
 }
