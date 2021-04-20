@@ -33,7 +33,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		createManager();
-		createProducer();
+		//createProducer();
 		createProducts();
 		System.out.println("----- Usuários Criados com Sucesso! -----");
 	}
