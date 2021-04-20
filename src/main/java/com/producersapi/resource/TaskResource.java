@@ -42,9 +42,14 @@ public class TaskResource extends Response<Task> implements EntityResource<Task>
 	@Override
 	public ResponseEntity<Task> updateById(Integer id, Task entity) {
 		Optional<Task> task = service.findById(id);
-		
+
 		System.out.println(entity.isStatus());
 		
+		if (entity.isStatus() == false)
+			entity.setStatus(true);
+		else
+			entity.setStatus(false);
+
 		if (task.isPresent()) {
 			BeanUtils.copyProperties(entity, task.get(), "id", "description", "date");
 
@@ -66,12 +71,12 @@ public class TaskResource extends Response<Task> implements EntityResource<Task>
 
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	@GetMapping("/todaytasks")
 	public List<Task> findByCurrentDate() {
 		return service.findByCurrentDate();
 	}
-	
+
 	@GetMapping("/futuretasks")
 	public List<Task> findByFutureTasks() {
 		return service.findByFutureTasks();
