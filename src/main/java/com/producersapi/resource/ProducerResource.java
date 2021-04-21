@@ -27,6 +27,8 @@ public class ProducerResource extends Response<Producer> implements EntityResour
 	@Override
 	public ResponseEntity<Producer> save(Producer entity) {
 		
+		System.out.println("PRODUTOR: " + entity);
+		
 		service.save(entity);
 		return new ResponseEntity<Producer>(entity, HttpStatus.CREATED);
 	}

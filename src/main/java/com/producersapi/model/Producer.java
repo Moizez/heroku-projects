@@ -11,8 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -65,7 +65,7 @@ public class Producer implements Serializable {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private FarmingActivity farmingActivity;
 
-	@OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+	@ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinTable(name = "producer_products")
 	private List<Product> products;
 

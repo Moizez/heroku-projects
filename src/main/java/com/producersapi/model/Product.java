@@ -1,11 +1,15 @@
 package com.producersapi.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -20,4 +24,8 @@ public class Product implements Serializable {
 	private Integer value;
 
 	private String label;
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "products")
+	private List<Producer> producers;
 }
