@@ -1,7 +1,7 @@
 package com.producersapi.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -47,8 +46,7 @@ public class Producer implements Serializable {
 
 	private int role = 1;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date birthDate;
+	private ZonedDateTime birthDate;
 
 	private String cpf;
 

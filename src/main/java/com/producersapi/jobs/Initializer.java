@@ -1,6 +1,7 @@
 package com.producersapi.jobs;
 
-import java.util.Date;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -37,6 +38,11 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		createProducts();
 		System.out.println("----- Usuários Criados com Sucesso! -----");
 	}
+	
+	public ZonedDateTime date() {
+		ZonedDateTime date = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+		return date;
+	}
 
 	private void createManager() {
 		Manager manager = managerService.findByEmail("leo@gmail.com");
@@ -55,7 +61,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			manager.setName("Leandro Rêgo");
 			manager.setNickname("Léo");
 			manager.setCpf("727.094.870-47");
-			manager.setBirthDate(new Date());
+			manager.setBirthDate(date());
 			manager.setPhone("(84)95555-5555");
 			manager.setEmail("leo@gmail.com");
 			manager.setPassword("123");
@@ -65,6 +71,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void createProducer() {
 		Producer producer = producerService.findByEmail("vina@gmail.com");
 		Manager manager = managerService.findByEmail("leo@gmail.com");
@@ -90,7 +97,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			producer.setName("Vinícius Carneiro");
 			producer.setNickname("Vina");
 			producer.setCpf("855.036.400-20");
-			producer.setBirthDate(new Date());
+			producer.setBirthDate(date());
 			producer.setPhone("(84)96666-6666");
 			producer.setEmail("vina@gmail.com");
 			producer.setPassword("123");

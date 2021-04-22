@@ -25,6 +25,9 @@ public class TaskResource extends Response<Task> implements EntityResource<Task>
 
 	@Override
 	public ResponseEntity<Task> save(Task entity) {
+		
+		System.out.println(entity);
+		
 		service.save(entity);
 		return new ResponseEntity<Task>(entity, HttpStatus.CREATED);
 	}
