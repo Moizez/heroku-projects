@@ -3,6 +3,7 @@ package com.producersapi.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer value;
 
+	@Column(name = "product_name")
 	private String label;
 
 	@JsonIgnore

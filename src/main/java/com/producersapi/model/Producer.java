@@ -57,17 +57,12 @@ public class Producer implements Serializable {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "producer_activity")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private FarmingActivity farmingActivity;
+	@ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+	@JoinTable(name = "producer_activities")
+	private List<FarmingActivity> farmingActivities;
 
 	@ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinTable(name = "producer_products")
 	private List<Product> products;
-
-	public FarmingActivity getFarmingActivity() {
-		return farmingActivity;
-	}
 
 }

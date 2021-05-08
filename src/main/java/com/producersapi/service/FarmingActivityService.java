@@ -35,4 +35,12 @@ public class FarmingActivityService implements EntityService<FarmingActivity> {
 	public void deleteById(Integer id) {
 		repository.deleteById(id);
 	}
+	
+	public FarmingActivity findByLabel(String label) {
+		return repository.findByLabel(label);
+	}
+
+	public FarmingActivity findByValue(Integer value) {
+		return repository.findByValue(value);
+	}
 }

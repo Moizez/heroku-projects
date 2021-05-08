@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.producersapi.model.FarmingActivity;
+import com.producersapi.model.Producer;
 import com.producersapi.service.FarmingActivityService;
 import com.producersapi.util.EntityResource;
 import com.producersapi.util.Response;
@@ -61,6 +64,17 @@ public class FarmingActivityResource extends Response<FarmingActivity> implement
 		if (farmingActivity.isPresent()) {
 			service.deleteById(id);
 			return ResponseEntity.ok().build();
+		}
+
+		return ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("/{value}/producers")
+	public ResponseEntity<List<Producer>> getProducers(@PathVariable("value") Integer value) {
+		FarmingActivity farmingActivity = service.findByValue(value);
+		
+		if (farmingActivity != null) {
+			return ResponseEntity.ok(farmingActivity.getProducers());
 		}
 
 		return ResponseEntity.notFound().build();

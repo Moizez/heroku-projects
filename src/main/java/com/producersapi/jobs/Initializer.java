@@ -8,8 +8,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.producersapi.model.Address;
+import com.producersapi.model.FarmingActivity;
 import com.producersapi.model.Manager;
 import com.producersapi.model.Product;
+import com.producersapi.service.FarmingActivityService;
 import com.producersapi.service.ManagerService;
 import com.producersapi.service.ProductService;
 
@@ -21,11 +23,15 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private FarmingActivityService farmingActivityService;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		createManager();
 		createProducts();
+		createActivities();
 		System.out.println("----- Usuários Criados com Sucesso! -----");
 	}
 
@@ -66,6 +72,21 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 				Product product = new Product();
 				product.setLabel(label);
 				productService.save(product);
+			}
+
+		}
+
+	}
+
+	public void createActivities() {
+
+		String activities[] = { "Agricultor", "Apicultor", "Pescador", "Leiteiro" };
+
+		for (String label : activities) {
+			if (farmingActivityService.findByLabel(label) == null) {
+				FarmingActivity activity = new FarmingActivity();
+				activity.setLabel(label);
+				farmingActivityService.save(activity);
 			}
 
 		}

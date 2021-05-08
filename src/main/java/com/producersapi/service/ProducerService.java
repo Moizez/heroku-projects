@@ -1,6 +1,5 @@
 package com.producersapi.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +43,7 @@ public class ProducerService implements EntityService<Producer> {
 	public List<Producer> findByActiveProducers() {
 		return repository.findByActiveProducers();
 	}
-		
+
 	public Producer findByEmail(String email) {
 		return repository.findByEmail(email);
 	}
@@ -55,19 +54,6 @@ public class ProducerService implements EntityService<Producer> {
 
 	public List<Producer> findByManager(Integer id) {
 		return repository.findByManager(id);
-	}
-	
-	public List<Producer> findByActivity(String activityName) {
-		List<Producer> producers = findAll(); 
-		List<Producer> producersByActivity = new ArrayList<Producer>();
-		producers.forEach(producer -> {
-			if(
-					producer.getFarmingActivity().getActivityName().name() != null &&
-					activityName.equals(producer.getFarmingActivity().getActivityName().name())){
-				producersByActivity.add(producer);
-			}
-		});
-		return producersByActivity;
 	}
 
 }
