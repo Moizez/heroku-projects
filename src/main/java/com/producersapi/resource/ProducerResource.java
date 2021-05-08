@@ -26,9 +26,9 @@ public class ProducerResource extends Response<Producer> implements EntityResour
 
 	@Override
 	public ResponseEntity<Producer> save(Producer entity) {
-		
+
 		System.out.println("PRODUTOR: " + entity);
-		
+
 		service.save(entity);
 		return new ResponseEntity<Producer>(entity, HttpStatus.CREATED);
 	}
@@ -48,6 +48,23 @@ public class ProducerResource extends Response<Producer> implements EntityResour
 		Optional<Producer> producer = service.findById(id);
 
 		if (producer.isPresent()) {
+
+			/*
+			 * if (entity.getName() == null || entity.getName().equals(""))
+			 * entity.setName(producer.get().getName());
+			 * 
+			 * if (entity.getNickname() == null || entity.getNickname().equals(""))
+			 * entity.setNickname(producer.get().getNickname());
+			 * 
+			 * if (entity.getPhone() == null || entity.getPhone().equals(""))
+			 * entity.setPhone(producer.get().getPhone());
+			 * 
+			 * if (entity.getEmail() == null || entity.getEmail().equals(""))
+			 * entity.setEmail(producer.get().getEmail());
+			 * 
+			 * if (entity.getBirthDate() == null)
+			 * entity.setBirthDate(producer.get().getBirthDate());
+			 */
 
 			BeanUtils.copyProperties(entity, producer.get(), "id", "password");
 
