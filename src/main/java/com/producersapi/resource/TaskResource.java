@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import com.producersapi.util.EntityResource;
 import com.producersapi.util.Response;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/tasks")
 public class TaskResource extends Response<Task> implements EntityResource<Task> {
 
@@ -25,9 +27,6 @@ public class TaskResource extends Response<Task> implements EntityResource<Task>
 
 	@Override
 	public ResponseEntity<Task> save(Task entity) {
-		
-		System.out.println(entity);
-		
 		service.save(entity);
 		return new ResponseEntity<Task>(entity, HttpStatus.CREATED);
 	}

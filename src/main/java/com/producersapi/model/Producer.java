@@ -1,7 +1,6 @@
 package com.producersapi.model;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -45,8 +44,8 @@ public class Producer implements Serializable {
 	private String password;
 
 	private int role = 1;
-
-	private ZonedDateTime birthDate;
+	
+	private String birthDate;
 
 	private String cpf;
 
@@ -66,5 +65,9 @@ public class Producer implements Serializable {
 	@ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinTable(name = "producer_products")
 	private List<Product> products;
+
+	public FarmingActivity getFarmingActivity() {
+		return farmingActivity;
+	}
 
 }

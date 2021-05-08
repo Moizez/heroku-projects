@@ -1,7 +1,6 @@
 package com.producersapi.model;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +28,7 @@ public class Task implements Serializable{
 	private boolean status;
 	
 	@Column(name = "task_date")
-	private ZonedDateTime date;
+	private String date;
 	
 	@JsonIgnore
 	@ManyToOne
