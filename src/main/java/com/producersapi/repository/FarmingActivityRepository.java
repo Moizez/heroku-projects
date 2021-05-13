@@ -7,8 +7,5 @@ import com.producersapi.model.FarmingActivity;
 
 @Repository
 public interface FarmingActivityRepository extends JpaRepository<FarmingActivity, Integer> {
-	
-	public FarmingActivity findByLabel(String label);
-	public FarmingActivity findByValue(Integer Value);
 
 }

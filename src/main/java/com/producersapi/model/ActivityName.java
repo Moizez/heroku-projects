@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Product implements Serializable {
+public class ActivityName implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,12 +24,13 @@ public class Product implements Serializable {
 	private Integer value;
 
 	private String label;
-
+	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "products")
-	private List<Producer> producers;
+	@OneToMany(mappedBy = "activityName")
+	private List<FarmingActivity> FarmingActivities;
 
-	public List<Producer> getProducers() {
-		return producers;
+	public Integer getValue() {
+		return value;
 	}
+
 }
