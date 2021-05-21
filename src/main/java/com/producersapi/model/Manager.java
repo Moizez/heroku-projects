@@ -39,7 +39,7 @@ public class Manager implements Serializable {
 	private String email;
 	
 	@JsonIgnore
-	private String password;
+	private String password = "admin";
 
 	private int role = 0;
 
