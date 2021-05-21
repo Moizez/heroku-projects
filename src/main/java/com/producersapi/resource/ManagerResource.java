@@ -26,6 +26,9 @@ public class ManagerResource extends Response<Manager> implements EntityResource
 
 	@Override
 	public ResponseEntity<Manager> save(Manager entity) {
+		if(entity.getPassword() == null || entity.getPassword() == "")
+			entity.setPassword("admin");
+		
 		service.save(entity);
 		return new ResponseEntity<Manager>(entity, HttpStatus.CREATED);
 	}
