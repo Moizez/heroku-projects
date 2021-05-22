@@ -1,19 +1,11 @@
 package com.producersapi.resource;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.HeadersBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.producersapi.service.EmailService;
 import com.producersapi.model.Manager;
 import com.producersapi.service.ManagerService;
-import com.producersapi.util.EntityResource;
 import com.producersapi.util.Response;
 
 @RestController
@@ -52,7 +43,7 @@ public class PasswordResource extends Response<Manager> {
 			String password = manager.getPassword();
 			long time = new Date().getTime();
 			String hash = gerarHash(""+password+time);
-			String host = "producerpoint.serviceapp.net.br";
+			String host = "https://prdoducersweb.herokuapp.com/";
 			String link = "https://"+host+"/recovery/"+email+"/"+time+"/"+hash;
 			try {
 				System.out.println("Enviando e-mail para "+email);

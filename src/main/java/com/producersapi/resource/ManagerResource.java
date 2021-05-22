@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.producersapi.model.Manager;
-import com.producersapi.model.Producer;
 import com.producersapi.service.ManagerService;
 import com.producersapi.util.EntityResource;
 import com.producersapi.util.Response;
