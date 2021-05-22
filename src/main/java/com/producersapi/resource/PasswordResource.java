@@ -43,7 +43,7 @@ public class PasswordResource extends Response<Manager> {
 			String password = manager.getPassword();
 			long time = new Date().getTime();
 			String hash = gerarHash(""+password+time);
-			String host = "https://prdoducersweb.herokuapp.com/";
+			String host = "prdoducersweb.herokuapp.com/";
 			String link = "https://"+host+"/recovery/"+email+"/"+time+"/"+hash;
 			try {
 				System.out.println("Enviando e-mail para "+email);
